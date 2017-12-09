@@ -1,17 +1,15 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const BrewNode = require('./brewNode'); 
+import * as express from 'express'
+import * as bodyParser from 'body-parser'
+import { BrewNode } from './brewNode'
 
 const port = 18070+Math.floor(Math.random()*30);
 console.log('starting node on ', port)
 let node1 = new BrewNode(port);
 
-node1.init();
-
 const http_port = 3000+Math.floor(Math.random()*10);
 
 let BrewHTTP = function (){
-	const app = new express();
+	const app = express();
 
 	app.use(bodyParser.json());
 
@@ -33,5 +31,5 @@ let BrewHTTP = function (){
 	})
 }
 
-let httpserver = new BrewHTTP();
+let httpserver = BrewHTTP();
 
